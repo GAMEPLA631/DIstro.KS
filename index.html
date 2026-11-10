@@ -18,6 +18,7 @@
       --accent-purple: #8b5cf6;
       --accent-cyan: #06b6d4;
       --accent-pink: #ec4899;
+      --accent-red: #ef4444;
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
     }
@@ -37,7 +38,131 @@
       position: relative;
     }
 
-    /* Ambientné žiariace svetlá */
+    /* ========================================================
+       FULLSCREEN WALLPAPER OVERLAY - OVERENIE TOTOŽNOSTI 18+
+    ======================================================== */
+    #idVerificationFullscreen {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 999999;
+      background: linear-gradient(135deg, rgba(7, 9, 19, 0.95), rgba(15, 23, 42, 0.96)),
+                  url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 25px;
+      overflow-y: auto;
+    }
+
+    .verification-card {
+      width: 100%;
+      max-width: 760px;
+      background: rgba(13, 17, 33, 0.88);
+      backdrop-filter: blur(35px);
+      -webkit-backdrop-filter: blur(35px);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 28px;
+      padding: 40px;
+      box-shadow: 0 40px 90px rgba(0, 0, 0, 0.9), 0 0 50px rgba(139, 92, 246, 0.25);
+      margin: auto;
+    }
+
+    .kyc-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      padding: 6px 16px;
+      border-radius: 50px;
+      color: #fca5a5;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    .kyc-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.1rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.5px;
+    }
+    .kyc-title span {
+      background: linear-gradient(90deg, #f87171, #ec4899, #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .kyc-warning-box {
+      background: rgba(239, 68, 68, 0.08);
+      border-left: 4px solid var(--accent-red);
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .kyc-warning-box strong {
+      color: #f87171;
+      font-size: 0.92rem;
+    }
+    .kyc-warning-box p {
+      color: #cbd5e1;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+    .kyc-deadline {
+      color: #fbbf24;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .kyc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    @media (max-width: 650px) {
+      .kyc-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .kyc-upload-box {
+      border: 2px dashed rgba(255, 255, 255, 0.2);
+      border-radius: 14px;
+      padding: 18px;
+      text-align: center;
+      cursor: pointer;
+      background: rgba(0, 0, 0, 0.25);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 120px;
+    }
+    .kyc-upload-box:hover {
+      border-color: var(--accent-cyan);
+      background: rgba(6, 182, 212, 0.05);
+    }
+    .kyc-preview-img {
+      max-width: 100%;
+      max-height: 140px;
+      border-radius: 8px;
+      display: none;
+      margin-top: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Ambientné svetlá */
     .ambient-glow {
       position: fixed;
       border-radius: 50%;
@@ -68,7 +193,7 @@
       background: radial-gradient(circle, var(--accent-pink), transparent 70%);
     }
 
-    /* Sklenený panel (Glassmorphism) */
+    /* Sklenený panel */
     .glass-panel {
       background: var(--card-bg);
       backdrop-filter: blur(24px);
@@ -328,7 +453,7 @@
       display: none;
     }
 
-    /* Formulárové polia */
+    /* Polia */
     .form-fields {
       display: flex;
       flex-direction: column;
@@ -434,7 +559,7 @@
       color: var(--text-muted);
     }
 
-    /* Tabuľka Vydaní */
+    /* Tabuľka */
     .releases-table-container {
       margin-top: 35px;
       overflow-x: auto;
@@ -571,7 +696,7 @@
       line-height: 1.5;
     }
 
-    /* 4-Členný Tím GAMEPLA 631 */
+    /* 4-Členný Tím */
     .team-title {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 2.2rem;
@@ -721,7 +846,90 @@
 </head>
 <body>
 
-  <!-- Efekty -->
+  <!-- ========================================================
+       OKNO NA CELÚ OBRAZOVKU: OVERENIE TOTOŽNOSTI 18+ (TAPETA)
+  ======================================================== -->
+  <div id="idVerificationFullscreen">
+    <div class="verification-card">
+      <div class="kyc-badge">🚨 Bezpečnostná kontrola GAMEPLA 631</div>
+      <h1 class="kyc-title">Overenie Totožnosti <span>(Vek 18+)</span></h1>
+      
+      <div class="kyc-warning-box">
+        <strong>⚠️ Povinné overenie plnoletosti pre distribúciu hudby</strong>
+        <p>Pre legálnu distribúciu nahrávok na Spotify, Apple Music a Roblox vyžadujú medzinárodné autorské zákony preukázanie veku 18 rokov. Pokiaľ doklad neoveríte do 30 dní, váš účet a distribúcia budú natrvalo zablokované.</p>
+        <div class="kyc-deadline" id="kycCountdownDisplay">Lehota na overenie: Počítam zostávajúci čas...</div>
+      </div>
+
+      <form id="kycVerificationForm" onsubmit="handleKycSubmit(event)">
+        
+        <!-- Výber z 9 TOTOŽNOSTÍ -->
+        <div class="input-group" style="margin-bottom: 16px;">
+          <label>Vyberte doklad totožnosti (Zoznam 9 akceptovaných foriem):</label>
+          <select id="kycDocumentType" required>
+            <option value="" disabled selected>-- Kliknite a vyberte 1 z 9 dokladov totožnosti --</option>
+            <option value="1. Slovenský Občiansky preukaz (OP SR)">1. Slovenský Občiansky preukaz (OP SR)</option>
+            <option value="2. Cestovný pas (Biometrický medzinárodný Passport)">2. Cestovný pas (Biometrický medzinárodný Passport)</option>
+            <option value="3. Vodičský preukaz (Európska únia / Medzinárodný)">3. Vodičský preukaz (Európska únia / Medzinárodný)</option>
+            <option value="4. Roblox ID & Verified Age Badge (Oficiálny vekový certifikát)">4. Roblox ID & Verified Age Badge (Oficiálny vekový certifikát)</option>
+            <option value="5. eID Digitálna identita (Slovensko.sk / Štátna digitálna identita)">5. eID Digitálna identita (Slovensko.sk / Štátna digitálna identita)</option>
+            <option value="6. US State ID / Driver's License (Americký preukaz totožnosti)">6. US State ID / Driver's License (Americký preukaz totožnosti)</option>
+            <option value="7. Pobytový preukaz cudzinca (Residence Permit EÚ / Global)">7. Pobytový preukaz cudzinca (Residence Permit EÚ / Global)</option>
+            <option value="8. Banková identita (BankID Overenie 18+)">8. Banková identita (BankID Overenie 18+)</option>
+            <option value="9. Národný identifikačný preukaz iného štátu (Global National ID)">9. Národný identifikačný preukaz iného štátu (Global National ID)</option>
+          </select>
+        </div>
+
+        <div class="kyc-grid">
+          <div class="input-group">
+            <label>Meno a Priezvisko (podľa dokladu)</label>
+            <input type="text" id="kycFullName" placeholder="napr. Kristián Stareček" required>
+          </div>
+          <div class="input-group">
+            <label>Dátum Narodenia (Musíte mať min. 18 rokov)</label>
+            <input type="date" id="kycBirthDate" required>
+          </div>
+        </div>
+
+        <div class="kyc-grid">
+          <div class="input-group">
+            <label>Sériové číslo / Kód dokladu</label>
+            <input type="text" id="kycDocNumber" placeholder="napr. EA948201 / PAS18492" required>
+          </div>
+          <div class="input-group">
+            <label>Krajina vydania dokladu</label>
+            <input type="text" id="kycCountry" placeholder="napr. Slovenská republika / USA" required>
+          </div>
+        </div>
+
+        <!-- Nahrávanie fotky dokladu -->
+        <div class="input-group" style="margin-bottom: 20px;">
+          <label>Nahrať fotku / sken dokladu totožnosti (Uloží sa do IndexedDB):</label>
+          <div class="kyc-upload-box" onclick="document.getElementById('kycFileInput').click()">
+            <svg style="width: 32px; height: 32px; stroke: var(--accent-cyan); margin-bottom: 6px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <span id="kycFileLabel" style="font-size: 0.88rem; color: #cbd5e1;">Kliknite pre nahratie fotky dokladu (JPG, PNG)</span>
+            <img id="kycImgPreview" class="kyc-preview-img" alt="Náhľad dokladu">
+          </div>
+          <input type="file" id="kycFileInput" accept="image/*" onchange="previewKycDocument(event)" style="display: none;" required>
+        </div>
+
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 24px;">
+          <input type="checkbox" id="kycConsent" required style="margin-top: 4px; accent-color: var(--accent-cyan);">
+          <label for="kycConsent" style="font-size: 0.82rem; color: var(--text-muted); cursor: pointer;">
+            Čestne prehlasujem, že mám viac ako 18 rokov, predložené údaje sú pravdivé a súhlasím s ich uložením v zabezpečenej IndexedDB databáze pre účely legálnej distribúcie hudby a hier.
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px; font-size: 1.05rem;">
+          🛡️ Overiť 18+ a Odomknúť Distribúciu
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Svetelné efekty -->
   <div class="ambient-glow glow-1"></div>
   <div class="ambient-glow glow-2"></div>
   <div class="ambient-glow glow-3"></div>
@@ -759,7 +967,7 @@
       <div class="section-header">
         <h2>Nahrať nový Track / Album</h2>
         <div class="db-status-pill">
-          <span>●</span> IndexedDB Úložisko Aktívne
+          <span>●</span> IndexedDB Úložisko & Totožnosť Overená
         </div>
       </div>
 
@@ -1008,7 +1216,7 @@
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2026 GAMEPLA 631 Technologies s.r.o. | Všetky práva vyhradené. Všetky dáta sú lokálne a bezpečne uložené v IndexedDB.</p>
+    <p>&copy; 2026 GAMEPLA 631 Technologies s.r.o. | Všetky práva vyhradené. Všetky dáta a overenia sú lokálne uložené v IndexedDB.</p>
     <p style="margin-top: 8px; font-size: 0.8rem; color: #64748b;">
       Zakladateľ: Kristián Stareček | Výkonný riaditeľ: Filip Marco | Artist Relations: Elena | Hlavný inžinier: Marcus Miller
     </p>
@@ -1020,21 +1228,27 @@
        1. INDEXEDDB ARCHITEKTÚRA (DATABASE INDEX)
     ======================================================== */
     const DB_NAME = 'GAMEPLA_INDEX_DB';
-    const DB_VERSION = 1;
-    const STORE_NAME = 'releases';
+    const DB_VERSION = 2; // Inkrementovaná verzia pre pridanie kyc_verification
+    const STORE_RELEASES = 'releases';
+    const STORE_VERIFICATION = 'kyc_verification';
     let dbInstance = null;
 
-    // Inicializácia a otvorenie IndexedDB
     function initIndexedDB() {
       return new Promise((resolve, reject) => {
         const request = indexedDB.open(DB_NAME, DB_VERSION);
 
         request.onupgradeneeded = function(event) {
           const db = event.target.result;
-          if (!db.objectStoreNames.contains(STORE_NAME)) {
-            // Vytvorenie store s auto-increment kľúčom
-            const store = db.createObjectStore(STORE_NAME, { keyPath: 'id', autoIncrement: true });
+          
+          // Pôvodný store pre hudbu sa zachováva bez zmeny
+          if (!db.objectStoreNames.contains(STORE_RELEASES)) {
+            const store = db.createObjectStore(STORE_RELEASES, { keyPath: 'id', autoIncrement: true });
             store.createIndex('createdAt', 'createdAt', { unique: false });
+          }
+
+          // Nový store pre ukladanie overenia totožnosti a 30-dňovej lehoty
+          if (!db.objectStoreNames.contains(STORE_VERIFICATION)) {
+            db.createObjectStore(STORE_VERIFICATION, { keyPath: 'id' });
           }
         };
 
@@ -1044,53 +1258,197 @@
         };
 
         request.onerror = function(event) {
-          console.error('Chyba pri otváraní IndexedDB:', event.target.error);
+          console.error('Chyba IndexedDB:', event.target.error);
           reject(event.target.error);
         };
       });
     }
 
-    // Uloženie nového vydania do IndexedDB
+    /* Správa vydaní */
     function saveReleaseToIndexedDB(releaseData) {
       return new Promise((resolve, reject) => {
-        const tx = dbInstance.transaction([STORE_NAME], 'readwrite');
-        const store = tx.objectStore(STORE_NAME);
+        const tx = dbInstance.transaction([STORE_RELEASES], 'readwrite');
+        const store = tx.objectStore(STORE_RELEASES);
         const req = store.add(releaseData);
-
         req.onsuccess = () => resolve(req.result);
         req.onerror = () => reject(req.error);
       });
     }
 
-    // Načítanie všetkých skladieb z IndexedDB
     function getAllReleasesFromIndexedDB() {
       return new Promise((resolve, reject) => {
-        const tx = dbInstance.transaction([STORE_NAME], 'readonly');
-        const store = tx.objectStore(STORE_NAME);
+        const tx = dbInstance.transaction([STORE_RELEASES], 'readonly');
+        const store = tx.objectStore(STORE_RELEASES);
         const req = store.getAll();
-
         req.onsuccess = () => resolve(req.result);
         req.onerror = () => reject(req.error);
       });
     }
 
-    // Vymazanie skladby z IndexedDB
     function deleteReleaseFromIndexedDB(id) {
       return new Promise((resolve, reject) => {
-        const tx = dbInstance.transaction([STORE_NAME], 'readwrite');
-        const store = tx.objectStore(STORE_NAME);
+        const tx = dbInstance.transaction([STORE_RELEASES], 'readwrite');
+        const store = tx.objectStore(STORE_RELEASES);
         const req = store.delete(Number(id));
-
         req.onsuccess = () => resolve();
         req.onerror = () => reject(req.error);
       });
     }
 
+    /* Správa overenia totožnosti */
+    function getVerificationFromDB() {
+      return new Promise((resolve, reject) => {
+        const tx = dbInstance.transaction([STORE_VERIFICATION], 'readonly');
+        const store = tx.objectStore(STORE_VERIFICATION);
+        const req = store.get('current_user_kyc');
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => reject(req.error);
+      });
+    }
+
+    function saveVerificationToDB(data) {
+      return new Promise((resolve, reject) => {
+        const tx = dbInstance.transaction([STORE_VERIFICATION], 'readwrite');
+        const store = tx.objectStore(STORE_VERIFICATION);
+        const req = store.put(data);
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => reject(req.error);
+      });
+    }
+
     /* ========================================================
-       2. UI & ČASOVAČE
+       2. SYSTÉM OVERENIA TOTOŽNOSTI (18+ & 30 DNÍ LEHOTA)
     ======================================================== */
-    let selectedHours = 2; // Predvolené 2 hodiny
-    let uploadedCoverDataUrl = "https://files.catbox.moe/zmq3vu.jpg"; // Predvolený obal
+    let kycDocImageBase64 = '';
+    const THIRTY_DAYS_MS = 30 * 24 * 60 * 60 * 1000;
+
+    function previewKycDocument(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          kycDocImageBase64 = e.target.result;
+          const img = document.getElementById('kycImgPreview');
+          img.src = kycDocImageBase64;
+          img.style.display = 'block';
+          document.getElementById('kycFileLabel').textContent = `Nahraný súbor: ${file.name}`;
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    async function handleKycSubmit(event) {
+      event.preventDefault();
+
+      const docType = document.getElementById('kycDocumentType').value;
+      const fullName = document.getElementById('kycFullName').value.trim();
+      const birthDateStr = document.getElementById('kycBirthDate').value;
+      const docNumber = document.getElementById('kycDocNumber').value.trim();
+      const country = document.getElementById('kycCountry').value.trim();
+
+      if (!birthDateStr) {
+        alert('Prosím, zadajte váš dátum narodenia.');
+        return;
+      }
+
+      // Validácia veku 18+
+      const birthDate = new Date(birthDateStr);
+      const today = new Date();
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+
+      if (age < 18) {
+        alert('⛔ PRÍSTUP ZAMIETNUTÝ: Na distribúciu hudby a správu nahrávok musíte mať minimálne 18 rokov!');
+        return;
+      }
+
+      if (!kycDocImageBase64) {
+        alert('Prosím, nahrajte fotku alebo sken vybraného dokladu totožnosti.');
+        return;
+      }
+
+      // Uloženie overenia do IndexedDB
+      const kycRecord = {
+        id: 'current_user_kyc',
+        status: 'VERIFIED',
+        docType,
+        fullName,
+        birthDate: birthDateStr,
+        docNumber,
+        country,
+        docPhoto: kycDocImageBase64,
+        verifiedAt: Date.now()
+      };
+
+      await saveVerificationToDB(kycRecord);
+
+      alert(`✅ TOTOŽNOSŤ ÚSPEŠNE OVERENÁ!\n\nDoklad: ${docType}\nVek: ${age} rokov (Plnoletý)\n\nÚdaje boli permanentne zapísané do IndexedDB. Prístup k distribúcii bol odomknutý.`);
+      
+      // Odomknutie rozhrania a schovanie okna s tapetou
+      document.getElementById('idVerificationFullscreen').style.display = 'none';
+    }
+
+    // Inicializácia odpočtu 30 dní pred zablokovaním
+    async function checkKycStatus() {
+      const kycModal = document.getElementById('idVerificationFullscreen');
+      let kycData = await getVerificationFromDB();
+
+      if (kycData && kycData.status === 'VERIFIED') {
+        // Používateľ je overený - schováme okno
+        kycModal.style.display = 'none';
+        return;
+      }
+
+      // Ak ešte nie je vytvorený termín, založíme prvotný záznam s 30-dňovým limitom
+      if (!kycData) {
+        const firstVisit = Date.now();
+        kycData = {
+          id: 'current_user_kyc',
+          status: 'PENDING',
+          firstVisit,
+          deadline: firstVisit + THIRTY_DAYS_MS
+        };
+        await saveVerificationToDB(kycData);
+      }
+
+      // Zobrazíme okno na celú obrazovku
+      kycModal.style.display = 'flex';
+
+      // Spustenie odpočtu 30 dní
+      const countdownElem = document.getElementById('kycCountdownDisplay');
+      const interval = setInterval(() => {
+        const now = Date.now();
+        const diff = kycData.deadline - now;
+
+        if (diff <= 0) {
+          clearInterval(interval);
+          countdownElem.innerHTML = '🚫 LEHOTA VYPRŠALA: Účet bol zablokovaný z dôvodu neoverenia totožnosti v lehote 30 dní.';
+          countdownElem.style.color = '#ef4444';
+          document.getElementById('kycVerificationForm').innerHTML = `
+            <div style="text-align: center; padding: 30px;">
+              <h2 style="color: #ef4444; margin-bottom: 15px;">🚫 Váš účet bol trvalo zablokovaný</h2>
+              <p style="color: #94a3b8;">Uplynula zákonná lehota 30 dní na overenie veku 18 rokov. Pre odblokovanie kontaktujte podporu GAMEPLA 631.</p>
+            </div>
+          `;
+        } else {
+          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+          countdownElem.innerHTML = `⏳ Lehota pred zablokovaním: <strong>${days} dní, ${hours} hod., ${minutes} min., ${seconds} sek.</strong>`;
+        }
+      }, 1000);
+    }
+
+    /* ========================================================
+       3. SPRÁVA NAHRÁVOK (DISTROKID FORM & TIMER)
+    ======================================================== */
+    let selectedHours = 2;
+    let uploadedCoverDataUrl = "https://files.catbox.moe/zmq3vu.jpg";
     const activeIntervals = {};
 
     function selectDeliverySpeed(hours) {
@@ -1111,7 +1469,7 @@
       if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {
-          uploadedCoverDataUrl = e.target.result; // Base64 kód obrázka pre IndexedDB
+          uploadedCoverDataUrl = e.target.result;
           const imgElement = document.getElementById('coverPreviewImg');
           imgElement.src = uploadedCoverDataUrl;
           imgElement.style.display = 'block';
@@ -1125,7 +1483,6 @@
       element.classList.toggle('active');
     }
 
-    // Spracovanie odoslania formulára a uloženie do databázy
     async function handleReleaseSubmit(event) {
       event.preventDefault();
 
@@ -1147,13 +1504,11 @@
 
       try {
         await saveReleaseToIndexedDB(newRelease);
-        alert(`💾 Skladba "${title}" bola úspešne zapísaná do IndexedDB databázy!\n\nZvolená validácia: ${selectedHours} hodín. Dáta zostanú v bezpečí aj po reštarte prehliadača.`);
+        alert(`💾 Skladba "${title}" bola úspešne zapísaná do IndexedDB databázy!\n\nZvolená validácia: ${selectedHours} hodín. Dáta zostanú v bezpečí aj po reštarte.`);
 
-        // Vyčistiť formulár
         document.getElementById('trackTitle').value = '';
         document.getElementById('artistName').value = '';
 
-        // Obnoviť tabuľku z databázy
         await loadAndRenderReleases();
         document.getElementById('dashboard').scrollIntoView({ behavior: 'smooth' });
       } catch (err) {
@@ -1162,9 +1517,7 @@
       }
     }
 
-    // Načítanie z databázy a vykreslenie tabuľky
     async function loadAndRenderReleases() {
-      // Zastaviť staré intervaly
       Object.keys(activeIntervals).forEach(k => clearInterval(activeIntervals[k]));
 
       const releases = await getAllReleasesFromIndexedDB();
@@ -1179,8 +1532,6 @@
       }
 
       countLabel.textContent = `Uložených ${releases.length} nahrávok v IndexedDB`;
-
-      // Zoradiť od najnovších
       releases.sort((a, b) => b.createdAt - a.createdAt);
 
       releases.forEach(rel => {
@@ -1206,13 +1557,10 @@
         `;
 
         tableBody.appendChild(row);
-
-        // Spustenie živého odpočítavania
         startLiveCountdown(timerId, rel.targetTime);
       });
     }
 
-    // Živé odpočítavanie voči uloženému timestampu
     function startLiveCountdown(elementId, targetTimestamp) {
       function tick() {
         const element = document.getElementById(elementId);
@@ -1242,7 +1590,6 @@
       activeIntervals[elementId] = setInterval(tick, 1000);
     }
 
-    // Odstránenie položky z IndexedDB
     async function deleteRelease(id) {
       if (confirm('Naozaj chcete túto skladbu odstrániť z lokálnej IndexedDB databázy?')) {
         await deleteReleaseFromIndexedDB(id);
@@ -1254,9 +1601,7 @@
       return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     }
 
-    /* ========================================================
-       3. MODÁLNE OKNO (PRIHLÁSENIE / REGISTRÁCIA)
-    ======================================================== */
+    /* Modal pre prihlásenie */
     function openAuthModal(mode) {
       document.getElementById('authModal').style.display = 'flex';
       switchAuthTab(mode);
@@ -1305,7 +1650,10 @@
       try {
         await initIndexedDB();
         
-        // Ak je databáza ešte úplne čistá, pridáme vzorovú nahrávku
+        // 1. Kontrola overenia totožnosti 18+ (fullscreen okno s tapetou)
+        await checkKycStatus();
+
+        // 2. Kontrola pôvodných vydaní v IndexedDB
         const existing = await getAllReleasesFromIndexedDB();
         if (existing.length === 0) {
           await saveReleaseToIndexedDB({
@@ -1314,14 +1662,14 @@
             genre: "Cyber Electro / EDM",
             cover: "https://files.catbox.moe/zmq3vu.jpg",
             hours: 2,
-            createdAt: Date.now() - (3 * 60 * 60 * 1000), // vytvorené pred 3 hodinami (už aktívne)
+            createdAt: Date.now() - (3 * 60 * 60 * 1000),
             targetTime: Date.now() - (1 * 60 * 60 * 1000)
           });
         }
 
         await loadAndRenderReleases();
       } catch (err) {
-        console.error('Chyba pri štarte IndexedDB:', err);
+        console.error('Chyba pri štarte aplikácie:', err);
       }
     });
   </script>
