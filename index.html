@@ -37,7 +37,7 @@
       position: relative;
     }
 
-    /* Abstraktné ambientné neónové svetlá */
+    /* Ambientné žiariace svetlá */
     .ambient-glow {
       position: fixed;
       border-radius: 50%;
@@ -68,7 +68,7 @@
       background: radial-gradient(circle, var(--accent-pink), transparent 70%);
     }
 
-    /* Glassmorphism Panel */
+    /* Sklenený panel (Glassmorphism) */
     .glass-panel {
       background: var(--card-bg);
       backdrop-filter: blur(24px);
@@ -78,7 +78,7 @@
       box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
     }
 
-    /* Horná navigácia */
+    /* Navigácia */
     nav {
       position: fixed;
       top: 0;
@@ -175,7 +175,6 @@
       box-shadow: 0 12px 30px rgba(99, 102, 241, 0.55);
     }
 
-    /* Kontajner */
     .container {
       max-width: 1280px;
       margin: 120px auto 60px auto;
@@ -217,7 +216,7 @@
     }
     .hero p {
       color: var(--text-muted);
-      max-width: 720px;
+      max-width: 740px;
       margin: 0 auto;
       font-size: 1.15rem;
       line-height: 1.6;
@@ -254,6 +253,17 @@
       border-radius: 4px;
       box-shadow: 0 0 12px var(--accent-cyan);
     }
+    .db-status-pill {
+      font-size: 0.8rem;
+      color: #34d399;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      padding: 5px 12px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
 
     .form-grid {
       display: grid;
@@ -266,7 +276,7 @@
       }
     }
 
-    /* Obal / Clover Uploader */
+    /* Obal / Clover Box */
     .cover-upload-box {
       border: 2px dashed rgba(255, 255, 255, 0.15);
       border-radius: 20px;
@@ -318,7 +328,7 @@
       display: none;
     }
 
-    /* Polia */
+    /* Formulárové polia */
     .form-fields {
       display: flex;
       flex-direction: column;
@@ -452,8 +462,8 @@
       background: rgba(255, 255, 255, 0.02);
     }
     .table-art {
-      width: 44px;
-      height: 44px;
+      width: 46px;
+      height: 46px;
       border-radius: 8px;
       object-fit: cover;
       display: inline-block;
@@ -465,7 +475,7 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 4px 12px;
+      padding: 5px 12px;
       border-radius: 20px;
       font-size: 0.8rem;
       font-weight: 600;
@@ -479,6 +489,21 @@
       background: rgba(16, 185, 129, 0.12);
       color: #34d399;
       border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .btn-delete-row {
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #f87171;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.78rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+    .btn-delete-row:hover {
+      background: rgba(239, 68, 68, 0.3);
+      color: #fff;
     }
 
     /* GAMEPLA 631 Sekcia */
@@ -696,7 +721,7 @@
 </head>
 <body>
 
-  <!-- Svetelné efekty -->
+  <!-- Efekty -->
   <div class="ambient-glow glow-1"></div>
   <div class="ambient-glow glow-2"></div>
   <div class="ambient-glow glow-3"></div>
@@ -733,7 +758,9 @@
     <section class="glass-panel upload-section" id="upload">
       <div class="section-header">
         <h2>Nahrať nový Track / Album</h2>
-        <span style="font-size: 0.85rem; color: #a5f3fc;">✓ Distribučné potrubie pripravené</span>
+        <div class="db-status-pill">
+          <span>●</span> IndexedDB Úložisko Aktívne
+        </div>
       </div>
 
       <form id="musicReleaseForm" onsubmit="handleReleaseSubmit(event)">
@@ -741,7 +768,7 @@
           
           <!-- Clover / Album Art Upload -->
           <div class="input-group">
-            <label>Obal Albumu / Cover Art (Štvorec min. 3000x3000px)</label>
+            <label>Obal Albumu / Cover Art (Ukladá sa do IndexedDB)</label>
             <div class="cover-upload-box" onclick="document.getElementById('albumCoverInput').click()">
               <img id="coverPreviewImg" src="" alt="Album Cover Preview">
               <div class="cover-prompt" id="coverUploadPrompt">
@@ -749,7 +776,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                 </svg>
                 <p>Klikni a nahraj Cover Fotku</p>
-                <span>Podpora JPG, PNG, WEBP</span>
+                <span>Ukladá sa v plnom rozlíšení</span>
               </div>
             </div>
             <input type="file" id="albumCoverInput" accept="image/*" onchange="previewCoverImage(event)" required>
@@ -781,7 +808,7 @@
               </div>
               <div class="input-group">
                 <label>Zvukový Súbor (Audio Master)</label>
-                <input type="file" accept="audio/*" required>
+                <input type="file" accept="audio/*">
               </div>
             </div>
 
@@ -802,17 +829,17 @@
               <div class="delivery-options">
                 <div class="delivery-card active" id="option2h" onclick="selectDeliverySpeed(2)">
                   <strong>Expresná Distribúcia 🚀 <span>2 Hodiny</span></strong>
-                  <span>Prioritné spracovanie cez GAMEPLA akceleračné servery.</span>
+                  <span>Prioritné spracovanie cez GAMEPLA servery.</span>
                 </div>
                 <div class="delivery-card" id="option24h" onclick="selectDeliverySpeed(24)">
                   <strong>Štandardná Kontrola 🛡️ <span>24 Hodín</span></strong>
-                  <span>Hĺbkový AI fingerprinting a globálny audio rozposielací cyklus.</span>
+                  <span>Kompletný AI fingerprinting a globálny audio cyklus.</span>
                 </div>
               </div>
             </div>
 
             <button type="submit" class="btn btn-primary" style="margin-top: 15px; padding: 15px; font-size: 1.05rem;">
-              🚀 Spustiť Distribúciu Skladby
+              💾 Uložiť do IndexedDB a Spustiť Distribúciu
             </button>
           </div>
 
@@ -820,11 +847,11 @@
       </form>
     </section>
 
-    <!-- Tabuľka Vydaní -->
+    <!-- Tabuľka Vydaní z Databázy -->
     <section class="glass-panel upload-section" id="dashboard">
       <div class="section-header">
-        <h2>Moje Vydania a Stav Distribúcie</h2>
-        <span style="font-size: 0.85rem; color: var(--text-muted);">Synchronizované s globálnym cloudom</span>
+        <h2>Moje Vydania (Trvalo uložené v IndexedDB)</h2>
+        <span style="font-size: 0.85rem; color: var(--text-muted);" id="dbCountLabel">Načítavam záznamy z databázy...</span>
       </div>
 
       <div class="releases-table-container">
@@ -834,21 +861,13 @@
               <th>Obal & Názov</th>
               <th>Interpret</th>
               <th>Žáner</th>
-              <th>Plánovaná Aktivácia</th>
-              <th>Stav / Časovač</th>
+              <th>Režim</th>
+              <th>Stav / Živý Časovač</th>
+              <th>Akcia</th>
             </tr>
           </thead>
           <tbody id="releasesTableBody">
-            <tr>
-              <td>
-                <img src="https://files.catbox.moe/zmq3vu.jpg" class="table-art" alt="demo">
-                <strong>Metaspace Genesis</strong>
-              </td>
-              <td>Kristián Stareček</td>
-              <td>Cyber Electro / EDM</td>
-              <td>Automaticky po schválení</td>
-              <td><span class="status-badge status-active">● Aktívne na všetkých sieťach</span></td>
-            </tr>
+            <!-- Dynamicky napĺňané z IndexedDB -->
           </tbody>
         </table>
       </div>
@@ -867,7 +886,7 @@
         Počas expanzie na globálnom trhu náš inžiniersky tím vyvinul vlastné <strong>AI audio prehrávače novej generácie</strong>, algoritmy dynamického masteringu a distribučné serverové uzly. Dnes GAMEPLA 631 spája hudobných umelcov s herným svetom a poskytuje distribúciu s takmer nulovou odozvou priamo do svetových streamovacích gigantov a metaverzových hier.
       </p>
 
-      <!-- Tech Card Grid -->
+      <!-- Tech Grid -->
       <div class="tech-grid" id="tech">
         <div class="tech-card">
           <div class="tech-icon">🎮</div>
@@ -891,7 +910,7 @@
       
       <div class="team-grid">
         
-        <!-- 1. Zakladateľ: Kristián Stareček -->
+        <!-- 1. Kristián Stareček -->
         <div class="team-card">
           <div class="team-img-wrapper">
             <img src="https://files.catbox.moe/zmq3vu.jpg" alt="Kristián Stareček">
@@ -933,10 +952,10 @@
           </div>
         </div>
 
-        <!-- 4. Programátor a Hlavný Vývojár: Marcus Miller -->
+        <!-- 4. Marcus Miller -->
         <div class="team-card">
           <div class="team-img-wrapper">
-            <img src="https://files.catbox.moe/mlhqg7.jpg" alt="Marcus Miller - Hlavný vývojár">
+            <img src="https://files.catbox.moe/mlhqg7.jpg" alt="Marcus Miller">
           </div>
           <div class="team-content">
             <span class="team-role">Hlavný Programátor & AI Architekt</span>
@@ -989,17 +1008,91 @@
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2026 GAMEPLA 631 Technologies s.r.o. | Všetky práva vyhradené. Roblox je registrovaná ochranná známka Roblox Corp.</p>
+    <p>&copy; 2026 GAMEPLA 631 Technologies s.r.o. | Všetky práva vyhradené. Všetky dáta sú lokálne a bezpečne uložené v IndexedDB.</p>
     <p style="margin-top: 8px; font-size: 0.8rem; color: #64748b;">
       Zakladateľ: Kristián Stareček | Výkonný riaditeľ: Filip Marco | Artist Relations: Elena | Hlavný inžinier: Marcus Miller
     </p>
   </footer>
 
+  <!-- INDEXEDDB & APLIKAČNÁ LOGIKA -->
   <script>
-    let selectedHours = 2; // Default 2 hodiny
-    let uploadedCoverDataUrl = "https://files.catbox.moe/zmq3vu.jpg"; // Default cover
+    /* ========================================================
+       1. INDEXEDDB ARCHITEKTÚRA (DATABASE INDEX)
+    ======================================================== */
+    const DB_NAME = 'GAMEPLA_INDEX_DB';
+    const DB_VERSION = 1;
+    const STORE_NAME = 'releases';
+    let dbInstance = null;
 
-    // Výber rýchlosti aktivácie (2h vs 24h)
+    // Inicializácia a otvorenie IndexedDB
+    function initIndexedDB() {
+      return new Promise((resolve, reject) => {
+        const request = indexedDB.open(DB_NAME, DB_VERSION);
+
+        request.onupgradeneeded = function(event) {
+          const db = event.target.result;
+          if (!db.objectStoreNames.contains(STORE_NAME)) {
+            // Vytvorenie store s auto-increment kľúčom
+            const store = db.createObjectStore(STORE_NAME, { keyPath: 'id', autoIncrement: true });
+            store.createIndex('createdAt', 'createdAt', { unique: false });
+          }
+        };
+
+        request.onsuccess = function(event) {
+          dbInstance = event.target.result;
+          resolve(dbInstance);
+        };
+
+        request.onerror = function(event) {
+          console.error('Chyba pri otváraní IndexedDB:', event.target.error);
+          reject(event.target.error);
+        };
+      });
+    }
+
+    // Uloženie nového vydania do IndexedDB
+    function saveReleaseToIndexedDB(releaseData) {
+      return new Promise((resolve, reject) => {
+        const tx = dbInstance.transaction([STORE_NAME], 'readwrite');
+        const store = tx.objectStore(STORE_NAME);
+        const req = store.add(releaseData);
+
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => reject(req.error);
+      });
+    }
+
+    // Načítanie všetkých skladieb z IndexedDB
+    function getAllReleasesFromIndexedDB() {
+      return new Promise((resolve, reject) => {
+        const tx = dbInstance.transaction([STORE_NAME], 'readonly');
+        const store = tx.objectStore(STORE_NAME);
+        const req = store.getAll();
+
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => reject(req.error);
+      });
+    }
+
+    // Vymazanie skladby z IndexedDB
+    function deleteReleaseFromIndexedDB(id) {
+      return new Promise((resolve, reject) => {
+        const tx = dbInstance.transaction([STORE_NAME], 'readwrite');
+        const store = tx.objectStore(STORE_NAME);
+        const req = store.delete(Number(id));
+
+        req.onsuccess = () => resolve();
+        req.onerror = () => reject(req.error);
+      });
+    }
+
+    /* ========================================================
+       2. UI & ČASOVAČE
+    ======================================================== */
+    let selectedHours = 2; // Predvolené 2 hodiny
+    let uploadedCoverDataUrl = "https://files.catbox.moe/zmq3vu.jpg"; // Predvolený obal
+    const activeIntervals = {};
+
     function selectDeliverySpeed(hours) {
       selectedHours = hours;
       const opt2 = document.getElementById('option2h');
@@ -1013,13 +1106,12 @@
       }
     }
 
-    // Náhľad Clover / Album Cover
     function previewCoverImage(event) {
       const file = event.target.files[0];
       if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {
-          uploadedCoverDataUrl = e.target.result;
+          uploadedCoverDataUrl = e.target.result; // Base64 kód obrázka pre IndexedDB
           const imgElement = document.getElementById('coverPreviewImg');
           imgElement.src = uploadedCoverDataUrl;
           imgElement.style.display = 'block';
@@ -1029,66 +1121,110 @@
       }
     }
 
-    // Výber distribučných sietí
     function togglePlatform(element) {
       element.classList.toggle('active');
     }
 
-    // Odoslanie nahrávky
-    function handleReleaseSubmit(event) {
+    // Spracovanie odoslania formulára a uloženie do databázy
+    async function handleReleaseSubmit(event) {
       event.preventDefault();
 
-      const title = document.getElementById('trackTitle').value;
-      const artist = document.getElementById('artistName').value;
+      const title = document.getElementById('trackTitle').value.trim();
+      const artist = document.getElementById('artistName').value.trim();
       const genre = document.getElementById('genreSelect').value;
+      const createdAt = Date.now();
+      const targetTime = createdAt + (selectedHours * 60 * 60 * 1000);
 
-      const targetTime = Date.now() + (selectedHours * 60 * 60 * 1000);
-      const uniqueId = 'timer_' + Date.now();
+      const newRelease = {
+        title,
+        artist,
+        genre,
+        cover: uploadedCoverDataUrl,
+        hours: selectedHours,
+        createdAt,
+        targetTime
+      };
 
-      const tableBody = document.getElementById('releasesTableBody');
-      const newRow = document.createElement('tr');
+      try {
+        await saveReleaseToIndexedDB(newRelease);
+        alert(`💾 Skladba "${title}" bola úspešne zapísaná do IndexedDB databázy!\n\nZvolená validácia: ${selectedHours} hodín. Dáta zostanú v bezpečí aj po reštarte prehliadača.`);
 
-      newRow.innerHTML = `
-        <td>
-          <img src="${uploadedCoverDataUrl}" class="table-art" alt="cover">
-          <strong>${title}</strong>
-        </td>
-        <td>${artist}</td>
-        <td>${genre}</td>
-        <td>Aktivácia za ${selectedHours} hod.</td>
-        <td>
-          <span class="status-badge status-pending" id="${uniqueId}">
-            ⏳ AI Validácia: Pripravujem...
-          </span>
-        </td>
-      `;
+        // Vyčistiť formulár
+        document.getElementById('trackTitle').value = '';
+        document.getElementById('artistName').value = '';
 
-      tableBody.prepend(newRow);
-      startLiveCountdown(uniqueId, targetTime);
-
-      alert(`✅ Skladba "${title}" od ${artist} bola úspešne odoslaná do potrubia GAMEPLA 631!\n\nZvolená kontrola: ${selectedHours} hodín. Postup vidíte priamo v tabuľke.`);
-
-      document.getElementById('trackTitle').value = '';
-      document.getElementById('artistName').value = '';
-      document.getElementById('dashboard').scrollIntoView({ behavior: 'smooth' });
+        // Obnoviť tabuľku z databázy
+        await loadAndRenderReleases();
+        document.getElementById('dashboard').scrollIntoView({ behavior: 'smooth' });
+      } catch (err) {
+        console.error(err);
+        alert('Nastala chyba pri ukladaní do IndexedDB.');
+      }
     }
 
-    // Odpočítavanie
+    // Načítanie z databázy a vykreslenie tabuľky
+    async function loadAndRenderReleases() {
+      // Zastaviť staré intervaly
+      Object.keys(activeIntervals).forEach(k => clearInterval(activeIntervals[k]));
+
+      const releases = await getAllReleasesFromIndexedDB();
+      const tableBody = document.getElementById('releasesTableBody');
+      const countLabel = document.getElementById('dbCountLabel');
+
+      tableBody.innerHTML = '';
+
+      if (releases.length === 0) {
+        countLabel.textContent = 'Databáza je prázdna (nahrajte prvú skladbu)';
+        return;
+      }
+
+      countLabel.textContent = `Uložených ${releases.length} nahrávok v IndexedDB`;
+
+      // Zoradiť od najnovších
+      releases.sort((a, b) => b.createdAt - a.createdAt);
+
+      releases.forEach(rel => {
+        const row = document.createElement('tr');
+        const timerId = `timer_badge_${rel.id}`;
+
+        row.innerHTML = `
+          <td>
+            <img src="${rel.cover}" class="table-art" alt="cover">
+            <strong>${escapeHtml(rel.title)}</strong>
+          </td>
+          <td>${escapeHtml(rel.artist)}</td>
+          <td>${escapeHtml(rel.genre)}</td>
+          <td>${rel.hours} hod. cyklus</td>
+          <td>
+            <span class="status-badge status-pending" id="${timerId}">
+              ⏳ Počítam čas...
+            </span>
+          </td>
+          <td>
+            <button class="btn-delete-row" onclick="deleteRelease(${rel.id})">Zmazať</button>
+          </td>
+        `;
+
+        tableBody.appendChild(row);
+
+        // Spustenie živého odpočítavania
+        startLiveCountdown(timerId, rel.targetTime);
+      });
+    }
+
+    // Živé odpočítavanie voči uloženému timestampu
     function startLiveCountdown(elementId, targetTimestamp) {
-      const interval = setInterval(() => {
+      function tick() {
+        const element = document.getElementById(elementId);
+        if (!element) return;
+
         const now = Date.now();
         const difference = targetTimestamp - now;
-        const targetElement = document.getElementById(elementId);
-
-        if (!targetElement) {
-          clearInterval(interval);
-          return;
-        }
 
         if (difference <= 0) {
-          clearInterval(interval);
-          targetElement.className = 'status-badge status-active';
-          targetElement.innerHTML = '● Aktívne na platformách';
+          element.className = 'status-badge status-active';
+          element.innerHTML = '● Aktívne na platformách';
+          clearInterval(activeIntervals[elementId]);
         } else {
           const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
           const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
@@ -1098,12 +1234,29 @@
           const mStr = String(minutes).padStart(2, '0');
           const sStr = String(seconds).padStart(2, '0');
 
-          targetElement.innerHTML = `⏳ AI Validácia: ${hStr}:${mStr}:${sStr}`;
+          element.innerHTML = `⏳ AI Validácia: ${hStr}:${mStr}:${sStr}`;
         }
-      }, 1000);
+      }
+
+      tick();
+      activeIntervals[elementId] = setInterval(tick, 1000);
     }
 
-    // Modálne okná
+    // Odstránenie položky z IndexedDB
+    async function deleteRelease(id) {
+      if (confirm('Naozaj chcete túto skladbu odstrániť z lokálnej IndexedDB databázy?')) {
+        await deleteReleaseFromIndexedDB(id);
+        await loadAndRenderReleases();
+      }
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    /* ========================================================
+       3. MODÁLNE OKNO (PRIHLÁSENIE / REGISTRÁCIA)
+    ======================================================== */
     function openAuthModal(mode) {
       document.getElementById('authModal').style.display = 'flex';
       switchAuthTab(mode);
@@ -1134,7 +1287,7 @@
 
     function handleAuthSubmit(e) {
       e.preventDefault();
-      alert('Váš účet bol úspešne pripojený k centrálnemu systému GAMEPLA 631.');
+      alert('Váš účet bol overený a prepojený s IndexedDB úložiskom.');
       closeAuthModal();
     }
 
@@ -1144,6 +1297,33 @@
         closeAuthModal();
       }
     }
+
+    /* ========================================================
+       4. ŠTART APLIKÁCIE PRI NAČÍTANÍ STRÁNKY
+    ======================================================== */
+    window.addEventListener('DOMContentLoaded', async () => {
+      try {
+        await initIndexedDB();
+        
+        // Ak je databáza ešte úplne čistá, pridáme vzorovú nahrávku
+        const existing = await getAllReleasesFromIndexedDB();
+        if (existing.length === 0) {
+          await saveReleaseToIndexedDB({
+            title: "Metaspace Genesis",
+            artist: "Kristián Stareček",
+            genre: "Cyber Electro / EDM",
+            cover: "https://files.catbox.moe/zmq3vu.jpg",
+            hours: 2,
+            createdAt: Date.now() - (3 * 60 * 60 * 1000), // vytvorené pred 3 hodinami (už aktívne)
+            targetTime: Date.now() - (1 * 60 * 60 * 1000)
+          });
+        }
+
+        await loadAndRenderReleases();
+      } catch (err) {
+        console.error('Chyba pri štarte IndexedDB:', err);
+      }
+    });
   </script>
 </body>
 </html>
